@@ -1,0 +1,25 @@
+{{> header}}
+<h1>Your weekly summary</h1>
+<p>Hi {{name}}, here's what happened in <strong>{{orgName}}</strong> this week.</p>
+<div class="card">
+  <p><strong>Tasks created:</strong> {{stats.tasksCreated}}</p>
+  <p><strong>Tasks completed:</strong> {{stats.tasksCompleted}}</p>
+  <p><strong>Tasks moved:</strong> {{stats.tasksMoved}}</p>
+  <p><strong>Active members:</strong> {{stats.activeMembers}}</p>
+  <p><strong>Boards active:</strong> {{stats.activeBoards}}</p>
+</div>
+{{#if stats.myTasks}}
+<h2>Your open tasks</h2>
+{{#each stats.myTasks}}
+<div class="card" style="margin:8px 0;">
+  <p><strong>{{this.title}}</strong></p>
+  <p>Board: {{this.boardName}}{{#if this.dueDate}} &nbsp;&middot;&nbsp; Due: {{this.dueDate}}{{/if}}</p>
+</div>
+{{/each}}
+{{/if}}
+<p style="text-align:center;margin:28px 0;">
+  <a href="{{appUrl}}" class="btn">Open Team Workspace</a>
+</p>
+<hr>
+<p class="small">You're receiving this weekly digest as a member of {{orgName}}. Update your preferences in <a href="{{appUrl}}/settings">account settings</a>.</p>
+{{> footer}}

@@ -1,0 +1,14 @@
+{{> header}}
+<h1>New sign-in to your account</h1>
+<p>Hi {{name}}, we noticed a new sign-in to your Team Workspace account from a device we haven't seen before.</p>
+<div class="card">
+  <p><strong>Time:</strong> {{timestamp}}</p>
+  <p><strong>IP address:</strong> {{ip}}</p>
+  <p><strong>Device:</strong> {{userAgent}}</p>
+</div>
+<p>If this was you, no action is needed.</p>
+<hr>
+<div class="alert">
+  <p>⚠️ &nbsp;<strong>Wasn't you?</strong> Your account may be at risk. <a href="{{resetUrl}}" style="color:#92400e;font-weight:600;">Change your password immediately</a> and contact support.</p>
+</div>
+{{> footer}}

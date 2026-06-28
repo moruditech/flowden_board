@@ -1,0 +1,19 @@
+{{> header}}
+<h1>Your role in {{orgName}} has changed</h1>
+<p>Hi {{name}}, your role in <strong>{{orgName}}</strong> has been updated.</p>
+<div class="card">
+  <p><strong>Organization:</strong> {{orgName}}</p>
+  <p><strong>Previous role:</strong> <span class="tag">{{oldRole}}</span></p>
+  <p><strong>New role:</strong> &nbsp;<span class="badge {{#if (eq newRole "admin")}}badge-admin{{else if (eq newRole "owner")}}badge-owner{{else}}badge-member{{/if}}">{{newRole}}</span></p>
+</div>
+{{#if (eq newRole "admin")}}
+<p>As an <strong>Admin</strong> you can now create and delete boards, invite members, and manage roles within the organization.</p>
+{{else if (eq newRole "owner")}}
+<p>As the <strong>Owner</strong> you have full control over the organization, including settings and deletion.</p>
+{{else}}
+<p>As a <strong>Member</strong> you can view boards, create tasks, and collaborate with your team.</p>
+{{/if}}
+<p style="text-align:center;margin:28px 0;">
+  <a href="{{orgUrl}}" class="btn">Go to {{orgName}}</a>
+</p>
+{{> footer}}

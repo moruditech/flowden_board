@@ -1,0 +1,13 @@
+{{> header}}
+<h1>New task assigned to you</h1>
+<p>Hi {{name}}, <strong>{{assignerName}}</strong> assigned you a task on the <strong>{{boardName}}</strong> board.</p>
+<div class="card">
+  <p><strong>Task:</strong> {{taskTitle}}</p>
+  <p><strong>Board:</strong> {{boardName}}</p>
+  {{#if dueDate}}<p><strong>Due date:</strong> {{dueDate}}</p>{{/if}}
+  <p><strong>Assigned by:</strong> {{assignerName}}</p>
+</div>
+<p style="text-align:center;margin:28px 0;">
+  <a href="{{taskUrl}}" class="btn">View task</a>
+</p>
+{{> footer}}

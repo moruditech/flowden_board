@@ -1,0 +1,11 @@
+{{> header}}
+<h1>Verify your email address</h1>
+<p>Hi {{name}}, thanks for signing up. Click the button below to confirm your email address and activate your account.</p>
+<p style="text-align:center;margin:28px 0;">
+  <a href="{{verifyUrl}}" class="btn">Verify my email</a>
+</p>
+<hr>
+<p class="small">This link expires in <strong>24 hours</strong>. If you can't click the button, copy and paste this URL into your browser:</p>
+<p class="small" style="word-break:break-all;"><a href="{{verifyUrl}}">{{verifyUrl}}</a></p>
+<p class="small">If you didn't create a Team Workspace account, you can safely ignore this email.</p>
+{{> footer}}

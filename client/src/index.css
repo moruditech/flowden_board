@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-surface text-zinc-900;
+    margin: 0;
+  }
+
+  /* Scrollbar — thin, unobtrusive */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-zinc-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-zinc-400; }
+
+  ::selection { @apply bg-brand-100 text-brand-900; }
+
+  /* Focus — accessible but not ugly blue outline */
+  :focus-visible {
+    outline: 2px solid theme('colors.brand.600');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Sidebar list item pattern */
+  .nav-item {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded text-sm text-sidebar-text
+           hover:bg-sidebar-hover hover:text-zinc-100 transition-colors duration-100 cursor-pointer select-none;
+  }
+  .nav-item.active {
+    @apply bg-sidebar-hover text-zinc-100 border-l-2 border-brand-500 pl-[10px];
+  }
+
+  /* Kanban task card */
+  .task-card {
+    @apply bg-white rounded border border-zinc-200 shadow-card
+           hover:shadow-card-hover hover:border-zinc-300 transition-all duration-100 cursor-grab active:cursor-grabbing;
+  }
+
+  /* Form field */
+  .field-label {
+    @apply block text-xs font-medium text-zinc-600 mb-1.5 tracking-wide;
+  }
+
+  /* Data label / chip */
+  .chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Dashed drop zone */
+  .drop-zone {
+    @apply border-2 border-dashed border-zinc-300 rounded transition-colors;
+  }
+  .drop-zone.over {
+    @apply border-brand-400 bg-brand-50;
+  }
+}

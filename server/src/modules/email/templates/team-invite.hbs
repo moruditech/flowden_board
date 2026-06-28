@@ -1,0 +1,16 @@
+{{> header}}
+<h1>You're invited to join {{orgName}}</h1>
+<p><strong>{{inviterName}}</strong> has invited you to join <strong>{{orgName}}</strong> on Team Workspace as {{#if (eq role "admin")}}an <strong>Admin</strong>{{else}}a <strong>Member</strong>{{/if}}.</p>
+<div class="card">
+  <p><strong>Organization:</strong> {{orgName}}</p>
+  <p><strong>Your role:</strong> <span class="badge {{#if (eq role "admin")}}badge-admin{{else}}badge-member{{/if}}">{{role}}</span></p>
+  <p><strong>Invited by:</strong> {{inviterName}}</p>
+</div>
+<p style="text-align:center;margin:28px 0;">
+  <a href="{{inviteUrl}}" class="btn">Accept invitation</a>
+</p>
+<hr>
+<p class="small">⏱ &nbsp;This invitation expires in <strong>{{expiresIn}}</strong>.</p>
+<p class="small">If you don't have a Team Workspace account yet, you'll be asked to create one after clicking the link above.</p>
+<p class="small">If you weren't expecting this invitation, you can safely ignore this email.</p>
+{{> footer}}
