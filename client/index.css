@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Prevent text size adjust on orientation change (iOS) */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface text-zinc-900;
+    margin: 0;
+    /* Prevent overscroll bounce from moving the app shell on mobile */
+    overscroll-behavior: none;
+  }
+
+  /* Scrollbar — thin, unobtrusive */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-zinc-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-zinc-400; }
+
+  ::selection { @apply bg-brand-100 text-brand-900; }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.brand.600');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Sidebar list item */
+  .nav-item {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded text-sm text-sidebar-text
+           hover:bg-sidebar-hover hover:text-zinc-100 transition-colors duration-100 cursor-pointer select-none;
+  }
+  .nav-item.active {
+    @apply bg-sidebar-hover text-zinc-100 border-l-2 border-brand-500 pl-[10px];
+  }
+
+  /* Kanban task card
+   *
+   * touch-action: pan-x pan-y lets the board canvas scroll by default.
+   * dnd-kit's TouchSensor calls preventDefault() after the 250ms delay,
+   * which blocks scroll and hands control to the drag handler.
+   * Without this, iOS can ignore preventDefault() on passive listeners. */
+  .task-card {
+    @apply bg-white rounded border border-zinc-200 shadow-card
+           hover:shadow-card-hover hover:border-zinc-300 transition-all duration-100
+           cursor-grab active:cursor-grabbing select-none;
+    /* Let the board scroll naturally on touch; dnd-kit takes over after its delay */
+    touch-action: pan-x pan-y;
+    /* GPU hint — prevents repaint flicker when the card transforms during drag */
+    will-change: transform;
+  }
+
+  /* Form field */
+  .field-label {
+    @apply block text-xs font-medium text-zinc-600 mb-1.5 tracking-wide;
+  }
+
+  /* Data label / chip */
+  .chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Dashed drop zone */
+  .drop-zone {
+    @apply border-2 border-dashed border-zinc-300 rounded transition-colors;
+  }
+  .drop-zone.over {
+    @apply border-brand-400 bg-brand-50;
+  }
+
+  /* Full viewport height that accounts for iOS Safari bottom bar */
+  .h-dvh { height: 100dvh; }
+}
