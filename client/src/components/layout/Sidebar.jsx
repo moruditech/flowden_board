@@ -12,6 +12,7 @@ import { queryClient } from '../../lib/queryClient.js';
 import { Avatar } from '../ui/Avatar.jsx';
 import { RoleBadge } from '../ui/Badge.jsx';
 import { cn } from '../../utils/cn.js';
+import { CreateOrgModal } from '../../features/organizations/components/OrgComponents.jsx';
 
 // ── Icons (inline SVG — no icon library dependency) ──────────────────────────
 const Icon = {
@@ -62,6 +63,7 @@ export function Sidebar() {
   const { user, clearAuth } = useAuthStore();
   const { activeOrgId, setActiveOrg } = useUiStore();
   const [orgOpen, setOrgOpen] = useState(false);
+  const [showCreateOrg, setShowCreateOrg] = useState(false);
   const navigate   = useNavigate();
   const location   = useLocation();
 
@@ -145,7 +147,7 @@ export function Sidebar() {
             ))}
             <div className="border-t border-zinc-700">
               <button
-                onClick={() => { setOrgOpen(false); navigate('/organizations/new'); }}
+                onClick={() => { setOrgOpen(false); setShowCreateOrg(true); }}
                 className="w-full flex items-center gap-2 px-3 py-2 text-xs text-zinc-500 hover:text-zinc-300 hover:bg-zinc-700 transition-colors"
               >
                 <span className="text-zinc-600">{Icon.plus}</span>
@@ -228,6 +230,8 @@ export function Sidebar() {
           </button>
         </div>
       </div>
+
+      <CreateOrgModal open={showCreateOrg} onClose={() => setShowCreateOrg(false)} />
     </aside>
   );
 }
